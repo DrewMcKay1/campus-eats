@@ -1604,7 +1604,22 @@ export default function App({ session }) {
     return () => clearTimeout(saveTimer.current);
   }, [stateSnapshot, dataLoaded, session?.user?.id]);
 
-  // Loading screen while fetching saved data
+  // shoppingMeals MUST be declared here — before any conditional return —
+  // to keep the hooks call order identical on every render (Rules of Hooks).
+  const shoppingMeals = useMemo(()=>{
+    const out=[];
+    Object.entries(allPlans).forEach(([off,plan])=>{
+      plan.forEach((day,di)=>{
+        MT.forEach(mt=>{
+          if(addedToList[listKey(off,di,mt)]&&day[mt]) out.push(day[mt]);
+        });
+      });
+    });
+    return out;
+  },[allPlans,addedToList]);
+
+  // Loading screen — shown as conditional rendering, NOT an early return,
+  // so that no hooks are ever skipped between renders.
   if (!dataLoaded) {
     return (
       <div style={{display:"flex",alignItems:"center",justifyContent:"center",
@@ -1716,19 +1731,6 @@ export default function App({ session }) {
     });
   }
   function deleteCustomMeal(id) { setCustomMeals(prev=>prev.filter(m=>m.id!==id)); }
-
-  // Collect all meals the user has added to the shopping list (deduped by ingredient)
-  const shoppingMeals = useMemo(()=>{
-    const out=[];
-    Object.entries(allPlans).forEach(([off,plan])=>{
-      plan.forEach((day,di)=>{
-        MT.forEach(mt=>{
-          if(addedToList[listKey(off,di,mt)]&&day[mt]) out.push(day[mt]);
-        });
-      });
-    });
-    return out;
-  },[allPlans,addedToList]);
 
   function addWeekToList() {
     const updates = {};
