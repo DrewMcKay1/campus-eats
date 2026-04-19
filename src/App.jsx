@@ -1050,7 +1050,12 @@ function FavoritesView({favorites,dislikes,owned,customMeals,onToggleFav,onToggl
 function CalendarView({allPlans,eatenMeals,currentWeekOff,onNav}) {
   const [vDate,setVDate] = useState(()=>getMon(0));
   const today = new Date(); today.setHours(0,0,0,0);
-  function getWOff(d) { const m=getMon(0); return Math.round((d-m)/(7*864e5)); }
+  function getWOff(d) {
+    const base=getMon(0);
+    const mon=new Date(d); const dow=mon.getDay();
+    mon.setDate(mon.getDate()-(dow===0?6:dow-1)); mon.setHours(0,0,0,0);
+    return Math.round((mon-base)/(7*864e5));
+  }
   const first=new Date(vDate.getFullYear(),vDate.getMonth(),1);
   const sm=new Date(first); const dow=first.getDay(); sm.setDate(first.getDate()-(dow===0?6:dow-1));
   const cells=Array.from({length:42},(_,i)=>{ const d=new Date(sm); d.setDate(sm.getDate()+i); return d; });
