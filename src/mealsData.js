@@ -158,7 +158,7 @@ export const MEALS =
    ings:[{item:"Frozen breakfast sandwich",qty:"1",use:1.99,pkg:"Each (Jimmy Dean)",pkgCost:1.99,cat:"Canned & Jarred"}],
    steps:["Remove from wrapper and wrap in a paper towel.","Microwave per package instructions, usually 90 sec on 50% then 40 sec on full.","Let sit 1 minute before eating — filling will be very hot."]},
 
-  {id:"b16",type:"Breakfast",name:"Eating Out: Fast Food Breakfast",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+  {id:"b16",type:"Breakfast",name:"Eating Out",budget:3,effort:1,prepTime:"0 min",tags:["American"],
    desc:"Grab a McDonald's McMuffin, hash browns, or a Chick-fil-A breakfast biscuit on the way to class. Zero prep, maximum satisfaction.",
    ings:[],
    steps:["Drive or walk to your nearest fast food spot.","Order your favorite breakfast combo.","Enjoy your morning."]},
@@ -403,7 +403,7 @@ export const MEALS =
          {item:"Jalapeño slices",qty:"to taste",use:.20,pkg:"12 oz jar",pkgCost:2.49,cat:"Canned & Jarred"}],
    steps:["Spread chips in a single layer on a microwave-safe plate.","Spoon beans over chips. Sprinkle cheese on top.","Microwave 60–90 seconds until cheese is fully melted.","Top with salsa and jalapeños."]},
 
-  {id:"l18",type:"Lunch",name:"Eating Out: Fast Food Lunch",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+  {id:"l18",type:"Lunch",name:"Eating Out",budget:3,effort:1,prepTime:"0 min",tags:["American"],
    desc:"A classic Wendy's combo or In-N-Out burger when you don't have time to cook between classes.",
    ings:[],
    steps:["Head to the drive-thru or food court.","Order a burger, fries, and a drink.","Get back to your day."]},
@@ -710,10 +710,10 @@ export const MEALS =
          {item:"Black pepper",qty:"½ tsp",use:.03,pkg:"2 oz jar",pkgCost:2.49,cat:"Pantry & Spices",owned:true}],
    steps:["Cook ramen noodles only (skip seasoning packet). Reserve ¼ cup pasta water before draining.","Whisk eggs, parmesan, and lots of black pepper in a bowl.","While noodles are still hot but off heat, stir in butter until melted.","Pour egg mix over noodles and toss constantly, adding pasta water a little at a time, until creamy — not scrambled.","Serve immediately with extra parmesan."]},
 
-  {id:"d18",type:"Dinner",name:"Eating Out: Pizza or Burgers",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+  {id:"d18",type:"Dinner",name:"Eating Out",budget:3,effort:1,prepTime:"0 min",tags:["American"],
    desc:"Treat yourself to Little Caesars Slices-N-Stix or order a burger delivery. Perfect for busy nights editing videos.",
    ings:[],
-   steps:["Open an app or drive to the pizza place.","Order dinner.","Relax and eat."]},
+   steps:["Open an app or drive to the fast food place.","Order dinner.","Relax and eat."]},
 
   {id:"d19",type:"Dinner",name:"Crispy Chicken Bacon Ranch Wrap",budget:2,effort:2,prepTime:"15 min",tags:["American"],
    desc:"Chicken, bacon, spinach, and ranch stuffed in a tortilla and griddled until the cheese melts and the outside is crispy.",
