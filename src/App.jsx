@@ -44,7 +44,7 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .rec-row.sel{background:#F0FDF4;}
 
 /* ── MOBILE ── */
-.m-header{position:fixed;top:0;left:0;right:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;border-bottom:1px solid #252D3E;}
+.m-header{position:fixed;top:0;left:0;right:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;border-bottom:1px solid #252D3E;transition:transform .26s cubic-bezier(.4,0,.2,1);will-change:transform;}
 .m-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:68px;background:#1A1F2E;display:flex;align-items:center;border-top:1px solid #252D3E;z-index:100;padding-bottom:env(safe-area-inset-bottom,0);}
 .m-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:rgba(255,255,255,.4);font-family:'Nunito Sans',sans-serif;cursor:pointer;padding:6px 0;transition:color .12s,background .12s;-webkit-tap-highlight-color:transparent;border-radius:8px;}
 .m-tab.active{color:#059669;background:rgba(255,255,255,.06);}
@@ -57,7 +57,7 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .m-tab-plan-emoji{font-size:28px;line-height:1;filter:brightness(0) invert(1);}
 .m-tab-plan-label{font-size:9.5px;font-weight:700;letter-spacing:.04em;font-family:'Nunito Sans',sans-serif;color:rgba(255,255,255,.45);line-height:1;margin-top:1px;}
 .m-tab-plan-label.active{color:#059669;}
-.m-content{position:fixed;top:56px;bottom:68px;left:0;right:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#F0F2F5;}
+.m-content{position:fixed;top:56px;bottom:68px;left:0;right:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#F0F2F5;transition:top .26s cubic-bezier(.4,0,.2,1);}
 .m-page{padding:16px 14px 20px;min-height:100%;}
 .m-day-strip{background:#1A1F2E;padding:10px 16px 12px;position:sticky;top:0;z-index:10;}
 .m-day-strip-sub{overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease;}
@@ -189,8 +189,8 @@ function MTag({type}) {
 function Modal({onClose,children,width=560}) {
   return (
     <>
-      <div className="fade-in" onClick={onClose}
-        style={{position:"fixed",inset:0,background:"rgba(15,23,42,.5)",zIndex:800}}/>
+      <div className="fade-in" onClick={onClose||undefined}
+        style={{position:"fixed",inset:0,background:"rgba(15,23,42,.5)",zIndex:800,cursor:onClose?"pointer":"default"}}/>
       <div style={{
         position:"fixed",
         /* On mobile: fill most of the screen so header+footer are always reachable */
@@ -222,8 +222,8 @@ function MHead({title,sub,onClose}) {
           <h3 style={{fontFamily:"'Manrope',sans-serif",fontSize:20,fontWeight:800,color:"#1A1F2E"}}>{title}</h3>
           {sub && <div style={{fontSize:13,color:"#64748B",marginTop:3}}>{sub}</div>}
         </div>
-        <button onClick={onClose}
-          style={{border:"none",background:"#F0F2F5",borderRadius:6,width:30,height:30,fontSize:18,color:"#94A3B8",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginLeft:12}}>×</button>
+        {onClose && <button onClick={onClose}
+          style={{border:"none",background:"#F0F2F5",borderRadius:6,width:30,height:30,fontSize:18,color:"#94A3B8",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginLeft:12}}>×</button>}
       </div>
     </div>
   );
@@ -365,7 +365,7 @@ function RecipePicker({mealType,prefs,currentId,dislikes,customMeals,onSelect,on
 }
 
 /* ─── PREFS PANEL ─── */
-function PrefsPanel({prefs,onSave,onClose}) {
+function PrefsPanel({prefs,onSave,onClose,isFirstTime=false}) {
   const [p,setP] = useState(dc(prefs));
   const [avIn,setAvIn] = useState("");
   const togD = d => setP(prev=>({...prev,dietary:prev.dietary.includes(d)?prev.dietary.filter(x=>x!==d):[...prev.dietary,d]}));
@@ -374,8 +374,11 @@ function PrefsPanel({prefs,onSave,onClose}) {
   const remAv = i => setP(prev=>({...prev,avoid:prev.avoid.filter((_,j)=>j!==i)}));
 
   return (
-    <Modal onClose={onClose} width={520}>
-      <MHead title="Meal Preferences" sub="Filters applied when building or browsing your meal plan" onClose={onClose}/>
+    <Modal onClose={isFirstTime?undefined:onClose} width={520}>
+      <MHead
+        title={isFirstTime?"Welcome to Campus Eats! 🍽":"Meal Preferences"}
+        sub={isFirstTime?"Set your preferences so we can build a personalized meal plan just for you.":"Filters applied when building or browsing your meal plan"}
+        onClose={isFirstTime?undefined:onClose}/>
       <div style={{overflow:"auto",flex:1,padding:"16px 22px"}}>
 
         <div style={{marginBottom:18}}>
@@ -460,9 +463,9 @@ function PrefsPanel({prefs,onSave,onClose}) {
         </div>
       </div>
       <div style={{padding:"14px 22px",borderTop:"1px solid #F0F2F5",flexShrink:0,display:"flex",gap:8}}>
-        <button className="abtn" onClick={onClose} style={{flex:1,justifyContent:"center",padding:"11px 0"}}>Cancel</button>
-        <button className="abtn pri" onClick={()=>{onSave(p);onClose();}} style={{flex:2,justifyContent:"center",padding:"11px 0",fontSize:14}}>
-          ✓ Save &amp; Rebuild Week
+        {!isFirstTime && <button className="abtn" onClick={onClose} style={{flex:1,justifyContent:"center",padding:"11px 0"}}>Cancel</button>}
+        <button className="abtn pri" onClick={()=>{onSave(p);onClose();}} style={{flex:isFirstTime?1:2,justifyContent:"center",padding:"11px 0",fontSize:14}}>
+          {isFirstTime?"🚀 Build My Meal Plan →":"✓ Save & Rebuild Week"}
         </button>
       </div>
     </Modal>
@@ -1149,8 +1152,16 @@ export default function App({ session }) {
   const touchStartX = useRef(null);
   const touchStartY = useRef(null);
   const [stripCollapsed, setStripCollapsed] = useState(false);
+  const [isFirstTime, setIsFirstTime] = useState(false);
   const mContentRef = useRef(null);
   const lastScrollY = useRef(0);
+
+  // Reset header/strip when switching tabs
+  useEffect(()=>{
+    setStripCollapsed(false);
+    if (mContentRef.current) mContentRef.current.scrollTop = 0;
+    lastScrollY.current = 0;
+  }, [view]);
 
   useEffect(()=>{
     const el = mContentRef.current;
@@ -1188,6 +1199,9 @@ export default function App({ session }) {
         if (typeof d.shopHideOwned === "boolean") setShopHideOwned(d.shopHideOwned);
         if (typeof d.weekOff === "number") setWeekOff(d.weekOff);
         if (typeof d.selDay  === "number") setSelDay(d.selDay);
+      } else if (!error && !data?.data) {
+        // Brand-new account — show preferences onboarding before the plan
+        setIsFirstTime(true);
       }
       setDataLoaded(true);
     }
@@ -1470,7 +1484,10 @@ export default function App({ session }) {
           }}
           onClose={()=>setPicker(null)}/>
       )}
-      {showPrefs && <PrefsPanel prefs={prefs} onSave={savePrefs} onClose={()=>setShowPrefs(false)}/>}
+      {isFirstTime && <PrefsPanel prefs={prefs} isFirstTime={true}
+        onSave={p=>{savePrefs(p);}}
+        onClose={()=>setIsFirstTime(false)}/>}
+      {!isFirstTime && showPrefs && <PrefsPanel prefs={prefs} onSave={savePrefs} onClose={()=>setShowPrefs(false)}/>}
       {showCustomForm && <CustomMealForm
         existing={editingCustom}
         onSave={saveCustomMeal}
@@ -1549,7 +1566,7 @@ export default function App({ session }) {
       <div style={{fontFamily:"'Nunito Sans',sans-serif",background:"#F0F2F5",height:"100dvh",overflow:"hidden"}}>
 
         {/* Mobile Header */}
-        <header className="m-header">
+        <header className="m-header" style={{transform: (stripCollapsed && view==="plan") ? "translateY(-56px)" : "translateY(0)"}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:32,height:32,background:"#059669",borderRadius:7,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>🍽</div>
             {view==="plan" ? (
@@ -1582,6 +1599,7 @@ export default function App({ session }) {
 
         {/* Mobile Content */}
         <div className="m-content" ref={mContentRef}
+          style={{top: (stripCollapsed && view==="plan") ? 0 : 56}}
           onTouchStart={view==="plan"?onTouchStart:undefined}
           onTouchEnd={view==="plan"?onTouchEnd:undefined}>
 
