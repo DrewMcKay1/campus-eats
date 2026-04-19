@@ -1586,8 +1586,20 @@ export default function App({ session }) {
             <div style={{width:32,height:32,background:"#059669",borderRadius:7,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>🍽</div>
             {view==="plan" ? (
               <div>
-                <div style={{fontFamily:"'Manrope',sans-serif",fontSize:15,fontWeight:800,color:"#fff",lineHeight:1.1}}>{DAYS[selDay]}</div>
-                <div style={{fontSize:10,color:"rgba(255,255,255,.4)"}}>{fmt(weekDates[0])} – {fmt(weekDates[6])}</div>
+                <div style={{display:"flex",alignItems:"center",gap:5}}>
+                  <span style={{fontFamily:"'Manrope',sans-serif",fontSize:15,fontWeight:800,color:"#fff",lineHeight:1.1}}>{DAYS[selDay]}</span>
+                  {sameDay(weekDates[selDay],today) && <span style={{fontSize:9,fontWeight:800,background:"#059669",color:"#fff",padding:"1px 5px",borderRadius:3}}>TODAY</span>}
+                </div>
+                <div style={{display:"flex",alignItems:"center",gap:6,marginTop:1}}>
+                  <span style={{fontSize:10,color:"rgba(255,255,255,.4)"}}>{fmt(weekDates[selDay])}</span>
+                  {!sameDay(weekDates[selDay],today) && (
+                    <button onClick={()=>{setWeekOff(0);setSelDay(tIdx);}}
+                      style={{border:"none",background:"rgba(5,150,105,.2)",color:"#34D399",borderRadius:20,
+                        padding:"1px 6px",fontSize:9,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito Sans',sans-serif",lineHeight:1.5}}>
+                      ↩ Today
+                    </button>
+                  )}
+                </div>
               </div>
             ) : (
               <div style={{fontFamily:"'Manrope',sans-serif",fontSize:16,fontWeight:800,color:"#fff"}}>{PAGE_TITLE[view]}</div>
@@ -1623,30 +1635,8 @@ export default function App({ session }) {
             <div>
               {/* Day strip — sticky below fixed header */}
               <div className="m-day-strip">
-                {/* Day name — always visible */}
-                <div style={{textAlign:"center",marginBottom:stripCollapsed?0:8}}>
-                  <div style={{fontFamily:"'Manrope',sans-serif",fontWeight:800,color:"#fff",fontSize:18,lineHeight:1}}>
-                    {DAYS[selDay]}
-                  </div>
-                </div>
-
-                {/* Collapsible sub-row: date + jump to today + dot nav */}
+                {/* Collapsible: arrows + MTWTFSS dots only */}
                 <div className={`m-day-strip-sub${stripCollapsed?" hidden":" visible"}`}>
-                  <div style={{display:"inline-flex",alignItems:"center",gap:6,marginBottom:10,width:"100%",justifyContent:"center"}}>
-                    <span style={{fontSize:11,color:"rgba(255,255,255,.5)"}}>
-                      {fmt(weekDates[selDay])}
-                      {sameDay(weekDates[selDay],today)&&<span style={{marginLeft:6,fontSize:9,fontWeight:800,background:"#059669",color:"#fff",padding:"1px 5px",borderRadius:3}}>TODAY</span>}
-                    </span>
-                    {!sameDay(weekDates[selDay],today) && (
-                      <button onClick={()=>{setWeekOff(0);setSelDay(tIdx);}}
-                        style={{border:"none",background:"rgba(5,150,105,.2)",color:"#34D399",borderRadius:20,
-                          padding:"2px 8px",fontSize:9.5,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito Sans',sans-serif",lineHeight:1.4}}>
-                        ↩ Today
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Arrows sandwiching the MTWTFSS dots */}
                   <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:14}}>
                     <button className="m-day-arrow" onClick={()=>goDay(-1)}>‹</button>
                     <div style={{display:"flex",gap:5}}>
