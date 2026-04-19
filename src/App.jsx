@@ -44,7 +44,7 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .rec-row.sel{background:#F0FDF4;}
 
 /* ── MOBILE ── */
-.m-header{position:fixed;top:0;left:0;right:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;border-bottom:1px solid #252D3E;transition:transform .26s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.m-header{position:fixed;top:0;left:0;right:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;border-bottom:1px solid #252D3E;transition:top .26s cubic-bezier(.4,0,.2,1);}
 .m-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:68px;background:#1A1F2E;display:flex;align-items:center;border-top:1px solid #252D3E;z-index:100;padding-bottom:env(safe-area-inset-bottom,0);}
 .m-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:rgba(255,255,255,.4);font-family:'Nunito Sans',sans-serif;cursor:pointer;padding:6px 0;transition:color .12s,background .12s;-webkit-tap-highlight-color:transparent;border-radius:8px;}
 .m-tab.active{color:#059669;background:rgba(255,255,255,.06);}
@@ -365,7 +365,7 @@ function RecipePicker({mealType,prefs,currentId,dislikes,customMeals,onSelect,on
 }
 
 /* ─── PREFS PANEL ─── */
-function PrefsPanel({prefs,onSave,onClose,isFirstTime=false}) {
+function PrefsPanel({prefs,onSave,onClose,isFirstTime=false,onSignOut}) {
   const [p,setP] = useState(dc(prefs));
   const [avIn,setAvIn] = useState("");
   const togD = d => setP(prev=>({...prev,dietary:prev.dietary.includes(d)?prev.dietary.filter(x=>x!==d):[...prev.dietary,d]}));
@@ -462,11 +462,20 @@ function PrefsPanel({prefs,onSave,onClose,isFirstTime=false}) {
           </div>
         </div>
       </div>
-      <div style={{padding:"14px 22px",borderTop:"1px solid #F0F2F5",flexShrink:0,display:"flex",gap:8}}>
-        {!isFirstTime && <button className="abtn" onClick={onClose} style={{flex:1,justifyContent:"center",padding:"11px 0"}}>Cancel</button>}
-        <button className="abtn pri" onClick={()=>{onSave(p);onClose();}} style={{flex:isFirstTime?1:2,justifyContent:"center",padding:"11px 0",fontSize:14}}>
-          {isFirstTime?"🚀 Build My Meal Plan →":"✓ Save & Rebuild Week"}
-        </button>
+      <div style={{padding:"14px 22px",borderTop:"1px solid #F0F2F5",flexShrink:0,display:"flex",flexDirection:"column",gap:8}}>
+        <div style={{display:"flex",gap:8}}>
+          {!isFirstTime && <button className="abtn" onClick={onClose} style={{flex:1,justifyContent:"center",padding:"11px 0"}}>Cancel</button>}
+          <button className="abtn pri" onClick={()=>{onSave(p);onClose();}} style={{flex:isFirstTime?1:2,justifyContent:"center",padding:"11px 0",fontSize:14}}>
+            {isFirstTime?"🚀 Build My Meal Plan →":"✓ Save & Rebuild Week"}
+          </button>
+        </div>
+        {onSignOut && (
+          <button onClick={onSignOut}
+            style={{width:"100%",padding:"10px 0",border:"1.5px solid #FEE2E2",borderRadius:7,background:"#FFF5F5",
+              color:"#DC2626",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Nunito Sans',sans-serif"}}>
+            Sign Out
+          </button>
+        )}
       </div>
     </Modal>
   );
@@ -1172,8 +1181,14 @@ export default function App({ session }) {
       else if (y < lastScrollY.current) setStripCollapsed(false);
       lastScrollY.current = y;
     };
+    // touchmove catches what iOS Safari misses during momentum scroll
+    const onTouchMove = () => { onScroll(); };
     el.addEventListener("scroll", onScroll, {passive:true});
-    return ()=>el.removeEventListener("scroll", onScroll);
+    el.addEventListener("touchmove", onTouchMove, {passive:true});
+    return ()=>{
+      el.removeEventListener("scroll", onScroll);
+      el.removeEventListener("touchmove", onTouchMove);
+    };
   }, [isMobile]);
 
   // Load saved state from Supabase on mount
@@ -1487,7 +1502,7 @@ export default function App({ session }) {
       {isFirstTime && <PrefsPanel prefs={prefs} isFirstTime={true}
         onSave={p=>{savePrefs(p);}}
         onClose={()=>setIsFirstTime(false)}/>}
-      {!isFirstTime && showPrefs && <PrefsPanel prefs={prefs} onSave={savePrefs} onClose={()=>setShowPrefs(false)}/>}
+      {!isFirstTime && showPrefs && <PrefsPanel prefs={prefs} onSave={savePrefs} onClose={()=>setShowPrefs(false)} onSignOut={isMobile?()=>supabase.auth.signOut():undefined}/>}
       {showCustomForm && <CustomMealForm
         existing={editingCustom}
         onSave={saveCustomMeal}
@@ -1566,7 +1581,7 @@ export default function App({ session }) {
       <div style={{fontFamily:"'Nunito Sans',sans-serif",background:"#F0F2F5",height:"100dvh",overflow:"hidden"}}>
 
         {/* Mobile Header */}
-        <header className="m-header" style={{transform: (stripCollapsed && view==="plan") ? "translateY(-56px)" : "translateY(0)"}}>
+        <header className="m-header" style={{top: (stripCollapsed && view==="plan") ? -56 : 0}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:32,height:32,background:"#059669",borderRadius:7,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>🍽</div>
             {view==="plan" ? (
