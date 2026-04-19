@@ -1,41 +1,41 @@
 /**
  * ============================================================
- *  CAMPUS EATS — MEAL DATABASE  (mealsData.js)
+ * CAMPUS EATS — MEAL DATABASE  (mealsData.js)
  * ============================================================
  *
- *  This is the ONLY file you need to edit to add, remove, or
- *  update default meals. App.jsx imports MEALS from here.
+ * This is the ONLY file you need to edit to add, remove, or
+ * update default meals. App.jsx imports MEALS from here.
  *
  * ── HOW TO ADD A MEAL ──────────────────────────────────────
- *  Copy one of the entries below and paste it before the
- *  closing "];" at the bottom. Fill in each field:
+ * Copy one of the entries below and paste it before the
+ * closing "];" at the bottom. Fill in each field:
  *
- *    id        Unique string: "b" breakfast, "l" lunch, "d" dinner
- *              + a number not already used. e.g. "b29", "l31", "d18"
- *    type      "Breakfast" | "Lunch" | "Dinner"
- *    name      Display name shown on meal cards
- *    budget    1 = under $3 · 2 = $3–$5 · 3 = $5+
- *    effort    1 = <10 min · 2 = 10–20 min · 3 = <30 min
- *    prepTime  Human-readable string e.g. "12 min"
- *    tags      Array of strings from: "Vegetarian" "Vegan"
- *              "American" "Italian" "Mexican" "Asian" "Mediterranean"
- *    desc      One–two sentence description shown on the card
- *    ings      Array of ingredient objects, each with:
- *                item     ingredient name
- *                qty      amount used, e.g. "2 tbsp"
- *                use      cost of that quantity in dollars (number)
- *                pkg      package you would buy, e.g. "16 oz jar"
- *                pkgCost  full package price (number)
- *                cat      one of: "Produce" "Meat & Fish"
- *                         "Dairy & Eggs" "Grains & Bread"
- *                         "Canned & Jarred" "Pantry & Spices"
- *                owned    (optional) true = pre-checked in Pantry
- *    steps     Array of instruction strings
+ * id        Unique string: "b" breakfast, "l" lunch, "d" dinner
+ * + a number not already used. e.g. "b29", "l31", "d18"
+ * type      "Breakfast" | "Lunch" | "Dinner"
+ * name      Display name shown on meal cards
+ * budget    1 = under $3 · 2 = $3–$5 · 3 = $5+
+ * effort    1 = <10 min · 2 = 10–20 min · 3 = <30 min
+ * prepTime  Human-readable string e.g. "12 min"
+ * tags      Array of strings from: "Vegetarian" "Vegan"
+ * "American" "Italian" "Mexican" "Asian" "Mediterranean"
+ * desc      One–two sentence description shown on the card
+ * ings      Array of ingredient objects, each with:
+ * item     ingredient name
+ * qty      amount used, e.g. "2 tbsp"
+ * use      cost of that quantity in dollars (number)
+ * pkg      package you would buy, e.g. "16 oz jar"
+ * pkgCost  full package price (number)
+ * cat      one of: "Produce" "Meat & Fish"
+ * "Dairy & Eggs" "Grains & Bread"
+ * "Canned & Jarred" "Pantry & Spices"
+ * owned    (optional) true = pre-checked in Pantry
+ * steps     Array of instruction strings
  *
  * ── HOW TO REMOVE A MEAL ───────────────────────────────────
- *  Delete the entire object for that meal (from { to the
- *  closing },). Make sure no trailing comma is left on the
- *  last item in the array.
+ * Delete the entire object for that meal (from { to the
+ * closing },). Make sure no trailing comma is left on the
+ * last item in the array.
  *
  * ── ADD NEW MEALS BELOW THIS LINE ─────────────────────────
  * ============================================================
@@ -157,6 +157,111 @@ export const MEALS =
    desc:"A Jimmy Dean frozen egg, cheese, and sausage sandwich microwaved in two minutes. Wrap in a paper towel so the bread stays soft.",
    ings:[{item:"Frozen breakfast sandwich",qty:"1",use:1.99,pkg:"Each (Jimmy Dean)",pkgCost:1.99,cat:"Canned & Jarred"}],
    steps:["Remove from wrapper and wrap in a paper towel.","Microwave per package instructions, usually 90 sec on 50% then 40 sec on full.","Let sit 1 minute before eating — filling will be very hot."]},
+
+  {id:"b16",type:"Breakfast",name:"Eating Out: Fast Food Breakfast",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+   desc:"Grab a McDonald's McMuffin, hash browns, or a Chick-fil-A breakfast biscuit on the way to class. Zero prep, maximum satisfaction.",
+   ings:[],
+   steps:["Drive or walk to your nearest fast food spot.","Order your favorite breakfast combo.","Enjoy your morning."]},
+
+  {id:"b17",type:"Breakfast",name:"Sausage, Biscuits & Gravy",budget:2,effort:2,prepTime:"15 min",tags:["American"],
+   desc:"Canned biscuits baked up golden with a quick packet-mix country gravy. Add some pre-cooked sausage for extra protein.",
+   ings:[{item:"Canned biscuits",qty:"2",use:.50,pkg:"8-count tube",pkgCost:1.99,cat:"Dairy & Eggs"},
+         {item:"Country gravy mix",qty:"½ packet",use:.49,pkg:"1 oz packet",pkgCost:.99,cat:"Pantry & Spices"},
+         {item:"Breakfast sausage (pre-cooked)",qty:"2 links",use:.85,pkg:"12-count box",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"Milk",qty:"½ cup",use:.19,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"}],
+   steps:["Bake biscuits per package instructions.","Whisk gravy mix with water or milk in a small pot and simmer until thick.","Microwave sausage links to warm up.","Split biscuits, top with sausage, and pour hot gravy over everything."]},
+
+  {id:"b18",type:"Breakfast",name:"Protein Bar & Applesauce",budget:1,effort:1,prepTime:"1 min",tags:["Vegetarian","American"],
+   desc:"The ultimate 'running late to class' combo. Grab a granola bar and a pouch of applesauce on your way out the door.",
+   ings:[{item:"Protein granola bar",qty:"1",use:.85,pkg:"6-count box",pkgCost:4.99,cat:"Pantry & Spices"},
+         {item:"Applesauce pouch",qty:"1",use:.62,pkg:"4-count box",pkgCost:2.49,cat:"Canned & Jarred"}],
+   steps:["Open wrappers.","Eat on the go."]},
+
+  {id:"b19",type:"Breakfast",name:"French Toast",budget:1,effort:2,prepTime:"12 min",tags:["Vegetarian","American"],
+   desc:"Bread soaked in a cinnamon-egg batter and cooked in butter. Tastes like a weekend, even on a Tuesday.",
+   ings:[{item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Eggs",qty:"1",use:.42,pkg:"1 dozen",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"Milk",qty:"2 tbsp",use:.05,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"},
+         {item:"Cinnamon",qty:"½ tsp",use:.04,pkg:"2.37 oz jar",pkgCost:2.49,cat:"Pantry & Spices",owned:true},
+         {item:"Butter",qty:"1 tbsp",use:.31,pkg:"1 lb (4 sticks)",pkgCost:4.99,cat:"Dairy & Eggs",owned:true},
+         {item:"Maple syrup",qty:"2 tbsp",use:.75,pkg:"12 oz bottle",pkgCost:5.49,cat:"Pantry & Spices"}],
+   steps:["Whisk egg, milk, and cinnamon in a shallow bowl.","Melt butter in a pan over medium heat.","Quickly dip both sides of bread in the egg mix.","Cook 2-3 minutes per side until golden brown. Serve with syrup."]},
+
+  {id:"b20",type:"Breakfast",name:"Protein Shake",budget:2,effort:1,prepTime:"2 min",tags:["Vegetarian","American"],
+   desc:"Just scoop, shake, and drink. The fastest way to get protein in before a morning workout or class.",
+   ings:[{item:"Protein powder",qty:"1 scoop",use:1.00,pkg:"2 lb tub",pkgCost:29.99,cat:"Pantry & Spices"},
+         {item:"Milk",qty:"1 cup",use:.37,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"}],
+   steps:["Add milk to a shaker bottle.","Add protein powder.","Shake vigorously for 30 seconds."]},
+
+  {id:"b21",type:"Breakfast",name:"Chocolate Banana Smoothie",budget:1,effort:1,prepTime:"5 min",tags:["Vegetarian","American"],
+   desc:"Feels like drinking a milkshake for breakfast. Banana, chocolate syrup, milk, and peanut butter blended cold.",
+   ings:[{item:"Banana",qty:"1",use:.25,pkg:"Bunch (~5)",pkgCost:1.29,cat:"Produce"},
+         {item:"Milk",qty:"1 cup",use:.37,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"},
+         {item:"Peanut butter",qty:"1 tbsp",use:.28,pkg:"16 oz jar",pkgCost:4.49,cat:"Pantry & Spices"},
+         {item:"Chocolate syrup",qty:"1 tbsp",use:.15,pkg:"24 oz bottle",pkgCost:3.49,cat:"Pantry & Spices"}],
+   steps:["Slice banana (use frozen for a thicker smoothie).","Add milk, banana, peanut butter, and chocolate syrup to a blender.","Blend until completely smooth."]},
+
+  {id:"b22",type:"Breakfast",name:"Frozen French Toast Sticks",budget:1,effort:1,prepTime:"3 min",tags:["Vegetarian","American"],
+   desc:"Pop them in the toaster or microwave and dip directly into maple syrup. Nostalgic and incredibly fast.",
+   ings:[{item:"Frozen french toast sticks",qty:"4",use:1.20,pkg:"16-count box",pkgCost:4.79,cat:"Grains & Bread"},
+         {item:"Maple syrup",qty:"2 tbsp",use:.75,pkg:"12 oz bottle",pkgCost:5.49,cat:"Pantry & Spices"}],
+   steps:["Heat french toast sticks in the toaster or microwave according to the box.","Pour syrup into a small cup for dunking."]},
+
+  {id:"b23",type:"Breakfast",name:"English Muffin Sandwich",budget:1,effort:2,prepTime:"10 min",tags:["Vegetarian","American"],
+   desc:"Toasted English muffin holding a folded egg and melted American cheese. Your own DIY drive-thru breakfast.",
+   ings:[{item:"English muffins",qty:"1",use:.50,pkg:"6-count pack",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Eggs",qty:"1",use:.42,pkg:"1 dozen",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"American cheese",qty:"1 slice",use:.21,pkg:"16-count pack",pkgCost:3.29,cat:"Dairy & Eggs"},
+         {item:"Butter",qty:"1 tsp",use:.10,pkg:"1 lb (4 sticks)",pkgCost:4.99,cat:"Dairy & Eggs",owned:true}],
+   steps:["Split and toast the English muffin. Butter both halves.","Whisk egg and cook in a small oiled pan, folding it into a square as it sets.","Place cheese on the egg to melt briefly, then assemble the sandwich."]},
+
+  {id:"b24",type:"Breakfast",name:"Fruit Smoothie",budget:2,effort:1,prepTime:"5 min",tags:["Vegetarian","American"],
+   desc:"A bright, refreshing blend of frozen berries, banana, and orange juice or milk. Great way to wake up.",
+   ings:[{item:"Frozen mixed berries",qty:"½ cup",use:.75,pkg:"12 oz bag",pkgCost:3.99,cat:"Produce"},
+         {item:"Banana",qty:"½",use:.13,pkg:"Bunch (~5)",pkgCost:1.29,cat:"Produce"},
+         {item:"Orange juice",qty:"½ cup",use:.35,pkg:"52 oz bottle",pkgCost:3.99,cat:"Canned & Jarred"}],
+   steps:["Combine frozen berries, banana, and orange juice in a blender.","Blend on high until completely smooth.","Add a little water if it's too thick."]},
+
+  {id:"b25",type:"Breakfast",name:"Store-Bought Muffins",budget:1,effort:1,prepTime:"1 min",tags:["Vegetarian","American"],
+   desc:"Grab a blueberry or chocolate chip muffin from a bakery pack. Zero cooking, great with coffee.",
+   ings:[{item:"Muffins (Bakery)",qty:"1",use:1.25,pkg:"4-count pack",pkgCost:4.99,cat:"Grains & Bread"}],
+   steps:["Take a muffin out of the container.","Eat it."]},
+
+  {id:"b26",type:"Breakfast",name:"Leftover Pizza",budget:1,effort:1,prepTime:"2 min",tags:["American"],
+   desc:"Eat it cold straight from the fridge or nuke it for 30 seconds. The undisputed king of college breakfasts.",
+   ings:[{item:"Leftover pizza",qty:"2 slices",use:0,pkg:"Leftovers",pkgCost:0,cat:"Grains & Bread",owned:true}],
+   steps:["Open fridge.","Decide between eating it cold or warming it up on a paper towel in the microwave."]},
+
+  {id:"b27",type:"Breakfast",name:"Microwave Scrambled Eggs",budget:1,effort:1,prepTime:"3 min",tags:["Vegetarian","American"],
+   desc:"When you don't even have time to wash a pan. Whisk eggs in a mug, microwave, and top with cheese.",
+   ings:[{item:"Eggs",qty:"2",use:.83,pkg:"1 dozen",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"Milk",qty:"1 tbsp",use:.05,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"},
+         {item:"Shredded cheese",qty:"1 tbsp",use:.12,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Spray a microwave-safe mug with cooking spray.","Crack eggs into the mug, add milk, salt, and pepper, and whisk vigorously with a fork.","Microwave for 45 seconds, stir, then microwave another 30-45 seconds until set.","Top with cheese."]},
+
+  {id:"b28",type:"Breakfast",name:"Sausage Breakfast Burrito",budget:2,effort:2,prepTime:"12 min",tags:["American","Mexican"],
+   desc:"Scrambled eggs, crumbled breakfast sausage, and cheese wrapped in a flour tortilla. Hearty and filling.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Eggs",qty:"2",use:.83,pkg:"1 dozen",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"Breakfast sausage (pre-cooked)",qty:"2 links",use:.85,pkg:"12-count box",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"Shredded cheese",qty:"2 tbsp",use:.25,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Salsa",qty:"1 tbsp",use:.12,pkg:"16 oz jar",pkgCost:3.99,cat:"Canned & Jarred"}],
+   steps:["Chop up the cooked sausage links and heat them in a skillet.","Whisk eggs and pour them over the sausage. Scramble until cooked.","Warm the tortilla in the microwave for 15 seconds.","Add the egg mixture, top with cheese and salsa, and roll tightly."]},
+
+  {id:"b29",type:"Breakfast",name:"Toast with PB & Honey",budget:1,effort:1,prepTime:"3 min",tags:["Vegetarian","American"],
+   desc:"A quick upgrade to standard peanut butter toast. A drizzle of honey adds the perfect amount of sweetness.",
+   ings:[{item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Peanut butter",qty:"2 tbsp",use:.56,pkg:"16 oz jar",pkgCost:4.49,cat:"Pantry & Spices"},
+         {item:"Honey",qty:"1 tbsp",use:.50,pkg:"12 oz bottle",pkgCost:5.99,cat:"Pantry & Spices",owned:true}],
+   steps:["Toast bread to your liking.","Spread peanut butter generously on each slice.","Drizzle honey over the top."]},
+
+  {id:"b30",type:"Breakfast",name:"Breakfast Quesadilla",budget:1,effort:2,prepTime:"10 min",tags:["Vegetarian","Mexican"],
+   desc:"Scrambled eggs and melted cheese pressed inside a crispy flour tortilla. Dip in salsa.",
+   ings:[{item:"Flour tortillas (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Eggs",qty:"2",use:.83,pkg:"1 dozen",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"Shredded cheese",qty:"¼ cup",use:.50,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Salsa",qty:"2 tbsp",use:.25,pkg:"16 oz jar",pkgCost:3.99,cat:"Canned & Jarred"}],
+   steps:["Scramble eggs in a pan until just set, then remove.","Wipe pan, put tortilla down, cover half with cheese and the scrambled eggs.","Fold over and cook 2 minutes per side until golden and the cheese melts.","Cut into wedges and serve with salsa."]},
 
   /* ══ LUNCH ══ */
   {id:"l1",type:"Lunch",name:"PB&J Sandwich",budget:1,effort:1,prepTime:"3 min",tags:["Vegan","Vegetarian","American"],
@@ -297,6 +402,143 @@ export const MEALS =
          {item:"Salsa",qty:"3 tbsp",use:.37,pkg:"16 oz jar",pkgCost:3.99,cat:"Canned & Jarred"},
          {item:"Jalapeño slices",qty:"to taste",use:.20,pkg:"12 oz jar",pkgCost:2.49,cat:"Canned & Jarred"}],
    steps:["Spread chips in a single layer on a microwave-safe plate.","Spoon beans over chips. Sprinkle cheese on top.","Microwave 60–90 seconds until cheese is fully melted.","Top with salsa and jalapeños."]},
+
+  {id:"l18",type:"Lunch",name:"Eating Out: Fast Food Lunch",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+   desc:"A classic Wendy's combo or In-N-Out burger when you don't have time to cook between classes.",
+   ings:[],
+   steps:["Head to the drive-thru or food court.","Order a burger, fries, and a drink.","Get back to your day."]},
+
+  {id:"l19",type:"Lunch",name:"French Bread Pizza",budget:2,effort:2,prepTime:"15 min",tags:["American","Italian"],
+   desc:"Half a loaf of French bread loaded with sauce, cheese, and pepperoni. Baked until bubbly and crispy.",
+   ings:[{item:"French bread",qty:"½ loaf",use:1.50,pkg:"1 loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Marinara sauce (jar)",qty:"½ cup",use:.50,pkg:"24 oz jar",pkgCost:3.49,cat:"Canned & Jarred"},
+         {item:"Shredded mozzarella",qty:"½ cup",use:.75,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Pepperoni",qty:"10 slices",use:.80,pkg:"5 oz bag",pkgCost:3.99,cat:"Meat & Fish"}],
+   steps:["Preheat oven to 400°F.","Slice French bread in half horizontally.","Spread marinara sauce evenly. Top with mozzarella and pepperoni.","Bake 10-12 minutes until cheese is melted and bubbly."]},
+
+  {id:"l20",type:"Lunch",name:"Chicken Salad Sandwich",budget:2,effort:1,prepTime:"8 min",tags:["American"],
+   desc:"Canned chicken mixed with mayo and celery, served on soft bread or a croissant. Easy protein punch.",
+   ings:[{item:"Canned chicken",qty:"1 can",use:1.99,pkg:"10 oz can",pkgCost:1.99,cat:"Meat & Fish"},
+         {item:"Mayonnaise",qty:"2 tbsp",use:.30,pkg:"30 oz jar",pkgCost:4.99,cat:"Pantry & Spices"},
+         {item:"Celery",qty:"1 stalk",use:.15,pkg:"1 bunch",pkgCost:1.99,cat:"Produce"},
+         {item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"}],
+   steps:["Drain the canned chicken thoroughly and break it up with a fork.","Dice the celery.","Mix chicken, celery, mayo, salt, and pepper in a bowl.","Serve piled high on bread or crackers."]},
+
+  {id:"l21",type:"Lunch",name:"Deli Turkey & Cheese Sandwich",budget:2,effort:1,prepTime:"4 min",tags:["American"],
+   desc:"The quintessential packed lunch. Deli turkey, a slice of cheese, lettuce, and mayo. Don't forget the pickle slices if you have them.",
+   ings:[{item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Deli turkey",qty:"4 oz",use:2.20,pkg:"9 oz pack",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"American cheese",qty:"1 slice",use:.21,pkg:"16-count pack",pkgCost:3.29,cat:"Dairy & Eggs"},
+         {item:"Romaine lettuce",qty:"1 leaf",use:.15,pkg:"Hearts 3-pack",pkgCost:2.99,cat:"Produce"},
+         {item:"Mayonnaise",qty:"1 tbsp",use:.15,pkg:"30 oz jar",pkgCost:4.99,cat:"Pantry & Spices"}],
+   steps:["Spread mayo on the bread.","Layer turkey, cheese, and lettuce.","Close the sandwich, cut in half, and enjoy."]},
+
+  {id:"l22",type:"Lunch",name:"Frozen Chicken Pot Pie",budget:1,effort:3,prepTime:"35 min",tags:["American"],
+   desc:"Individual frozen chicken pot pie. Flaky crust and creamy filling. Toss it in the oven or nuke it if you're desperate.",
+   ings:[{item:"Frozen chicken pot pie",qty:"1",use:1.99,pkg:"7 oz pie",pkgCost:1.99,cat:"Canned & Jarred"}],
+   steps:["Follow package instructions (oven takes about 30 mins, microwave about 5 mins).","Let sit for 2 minutes before eating to avoid burning your mouth."]},
+
+  {id:"l23",type:"Lunch",name:"Baked Potato with Chili",budget:2,effort:2,prepTime:"10 min",tags:["American"],
+   desc:"A microwave baked potato split open and smothered in canned chili and shredded cheese. Incredibly filling.",
+   ings:[{item:"Potato",qty:"1 large",use:.75,pkg:"5 lb bag",pkgCost:4.99,cat:"Produce"},
+         {item:"Canned chili",qty:"½ can",use:.99,pkg:"15 oz can",pkgCost:1.99,cat:"Canned & Jarred"},
+         {item:"Shredded cheese",qty:"¼ cup",use:.37,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Pierce the potato several times with a fork. Microwave for 6-8 minutes until tender.","Heat the canned chili in a microwave-safe bowl.","Split the potato, pour the hot chili over the top, and sprinkle with cheese."]},
+
+  {id:"l24",type:"Lunch",name:"Hot Dogs",budget:1,effort:1,prepTime:"6 min",tags:["American"],
+   desc:"Two hot dogs boiled or microwaved, tucked into buns with ketchup and mustard. Fast, cheap, classic.",
+   ings:[{item:"Hot dogs",qty:"2",use:1.00,pkg:"8-count pack",pkgCost:3.99,cat:"Meat & Fish"},
+         {item:"Hot dog buns",qty:"2",use:.75,pkg:"8-count pack",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Ketchup",qty:"1 tbsp",use:.08,pkg:"32 oz bottle",pkgCost:3.49,cat:"Pantry & Spices",owned:true},
+         {item:"Mustard",qty:"1 tbsp",use:.10,pkg:"14 oz bottle",pkgCost:1.99,cat:"Pantry & Spices",owned:true}],
+   steps:["Boil hot dogs in water for 4-5 minutes, or wrap in a paper towel and microwave for 1 minute.","Place in buns and top with ketchup and mustard."]},
+
+  {id:"l25",type:"Lunch",name:"Easy Taco Soup",budget:2,effort:2,prepTime:"15 min",tags:["Mexican","American"],
+   desc:"A quick pantry soup made with canned beans, corn, tomatoes, and taco seasoning. Heat and eat.",
+   ings:[{item:"Vegetable broth",qty:"1 cup",use:.44,pkg:"32 oz carton",pkgCost:2.49,cat:"Canned & Jarred"},
+         {item:"Black beans (can)",qty:"½ can",use:.75,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Corn (can)",qty:"½ can",use:.65,pkg:"15 oz can",pkgCost:1.29,cat:"Canned & Jarred"},
+         {item:"Diced tomatoes (can)",qty:"½ can",use:.75,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Taco seasoning",qty:"1 tbsp",use:.30,pkg:"1 oz packet",pkgCost:.99,cat:"Pantry & Spices"}],
+   steps:["Dump broth, beans (undrained), corn (undrained), and tomatoes (undrained) into a pot.","Stir in taco seasoning.","Simmer over medium heat for 10 minutes. Serve with tortilla chips."]},
+
+  {id:"l26",type:"Lunch",name:"Chicken Caesar Wrap",budget:2,effort:1,prepTime:"5 min",tags:["American"],
+   desc:"Cooked chicken, romaine, parmesan, and Caesar dressing rolled into a tight wrap. Tastes like a deli order.",
+   ings:[{item:"Chicken breast",qty:"4 oz (cooked)",use:1.60,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Romaine lettuce",qty:"1 cup",use:.33,pkg:"Hearts 3-pack",pkgCost:2.99,cat:"Produce"},
+         {item:"Caesar dressing",qty:"2 tbsp",use:.61,pkg:"13 oz bottle",pkgCost:3.99,cat:"Canned & Jarred"},
+         {item:"Parmesan (grated)",qty:"1 tbsp",use:.30,pkg:"5 oz tub",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"}],
+   steps:["Toss chopped chicken and lettuce with Caesar dressing and parmesan in a bowl.","Spoon the mixture onto the center of the tortilla.","Fold the sides in and roll tightly."]},
+
+  {id:"l27",type:"Lunch",name:"Smoked Turkey Cobb Wrap",budget:3,effort:1,prepTime:"7 min",tags:["American"],
+   desc:"A loaded wrap with cream cheese, turkey, avocado, and bacon bits. Gourmet lunch without the stove.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Cream cheese",qty:"1 tbsp",use:.22,pkg:"8 oz block",pkgCost:3.49,cat:"Dairy & Eggs"},
+         {item:"Deli turkey",qty:"3 oz",use:1.66,pkg:"9 oz pack",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"Avocado",qty:"¼",use:.32,pkg:"Each",pkgCost:1.29,cat:"Produce"},
+         {item:"Bacon bits",qty:"1 tbsp",use:.19,pkg:"4 oz bag",pkgCost:2.99,cat:"Meat & Fish"}],
+   steps:["Spread cream cheese evenly over the tortilla.","Layer turkey, sliced avocado, and sprinkle with bacon bits.","Roll tightly and slice diagonally."]},
+
+  {id:"l28",type:"Lunch",name:"BLT Sandwich",budget:2,effort:2,prepTime:"12 min",tags:["American"],
+   desc:"Bacon, crisp lettuce, and juicy tomato on toasted bread with mayo. An undeniable classic.",
+   ings:[{item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Bacon",qty:"3 slices",use:1.20,pkg:"16 oz pack",pkgCost:5.99,cat:"Meat & Fish"},
+         {item:"Romaine lettuce",qty:"2 leaves",use:.30,pkg:"Hearts 3-pack",pkgCost:2.99,cat:"Produce"},
+         {item:"Tomato",qty:"2 thick slices",use:.50,pkg:"Each",pkgCost:.99,cat:"Produce"},
+         {item:"Mayonnaise",qty:"1 tbsp",use:.15,pkg:"30 oz jar",pkgCost:4.99,cat:"Pantry & Spices"}],
+   steps:["Fry or microwave bacon until crispy.","Toast the bread and spread mayo on one side of each slice.","Layer lettuce, tomato slices, and bacon. Close and eat."]},
+
+  {id:"l29",type:"Lunch",name:"Tuna Melt",budget:2,effort:2,prepTime:"12 min",tags:["American"],
+   desc:"Tuna salad topped with a slice of cheese and griddled until golden and melty. Comfort food at its finest.",
+   ings:[{item:"Canned tuna (5 oz)",qty:"1 can",use:1.20,pkg:"5 oz can",pkgCost:1.79,cat:"Canned & Jarred"},
+         {item:"Mayonnaise",qty:"1 tbsp",use:.15,pkg:"30 oz jar",pkgCost:4.99,cat:"Pantry & Spices"},
+         {item:"American cheese",qty:"1 slice",use:.21,pkg:"16-count pack",pkgCost:3.29,cat:"Dairy & Eggs"},
+         {item:"Bread",qty:"2 slices",use:.30,pkg:"20-slice loaf",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Butter",qty:"1 tbsp",use:.31,pkg:"1 lb (4 sticks)",pkgCost:4.99,cat:"Dairy & Eggs",owned:true}],
+   steps:["Mix drained tuna with mayo, salt, and pepper.","Butter one side of each bread slice. Place one butter-side down in a cold pan.","Top with tuna salad, cheese, and the second bread slice (butter-side up).","Cook over medium heat 3-4 mins per side until golden and the cheese melts."]},
+
+  {id:"l30",type:"Lunch",name:"Bagged Salad with Chicken",budget:2,effort:1,prepTime:"4 min",tags:["American"],
+   desc:"Grab a salad kit from the store, dump it in a bowl, and throw some pre-cooked or canned chicken on top.",
+   ings:[{item:"Bagged salad kit",qty:"½ bag",use:1.99,pkg:"1 bag",pkgCost:3.99,cat:"Produce"},
+         {item:"Chicken breast",qty:"4 oz (cooked)",use:1.60,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"}],
+   steps:["Empty half the salad kit (greens, toppings, dressing) into a large bowl.","Add cooked or canned chicken.","Toss until completely coated in dressing."]},
+
+  {id:"l31",type:"Lunch",name:"Leftover Pasta",budget:1,effort:1,prepTime:"3 min",tags:["Vegetarian","Italian"],
+   desc:"Last night's dinner, microwaved until steaming. Often tastes better the next day anyway.",
+   ings:[{item:"Leftover pasta",qty:"1 bowl",use:0,pkg:"Leftovers",pkgCost:0,cat:"Grains & Bread",owned:true}],
+   steps:["Place pasta in a microwave-safe bowl. Add a tiny splash of water so it doesn't dry out.","Microwave for 90 seconds, stir, and heat for another 30 seconds."]},
+
+  {id:"l32",type:"Lunch",name:"Pesto Pasta Salad",budget:2,effort:2,prepTime:"15 min",tags:["Vegetarian","Italian"],
+   desc:"Cold rotini tossed with jarred pesto, mozzarella pearls, and grape tomatoes. Make a batch and eat it all week.",
+   ings:[{item:"Rotini pasta",qty:"2 oz",use:.25,pkg:"16 oz box",pkgCost:1.99,cat:"Grains & Bread"},
+         {item:"Pesto sauce (jar)",qty:"2 tbsp",use:.85,pkg:"8 oz jar",pkgCost:3.49,cat:"Canned & Jarred"},
+         {item:"Grape tomatoes",qty:"¼ cup",use:.50,pkg:"1 pint",pkgCost:2.99,cat:"Produce"},
+         {item:"Mozzarella pearls",qty:"¼ cup",use:1.25,pkg:"8 oz tub",pkgCost:4.99,cat:"Dairy & Eggs"}],
+   steps:["Boil rotini until al dente, drain, and rinse with cold water.","Halve the grape tomatoes.","Toss the cold pasta with pesto, tomatoes, and mozzarella pearls."]},
+
+  {id:"l33",type:"Lunch",name:"Chicken Patty Sandwich",budget:2,effort:2,prepTime:"15 min",tags:["American"],
+   desc:"A frozen breaded chicken patty baked crispy and served on a hamburger bun with mayo and lettuce.",
+   ings:[{item:"Frozen chicken patty",qty:"1",use:1.20,pkg:"24 oz bag",pkgCost:5.99,cat:"Meat & Fish"},
+         {item:"Hamburger buns",qty:"1",use:.37,pkg:"8-count pack",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Mayonnaise",qty:"1 tbsp",use:.15,pkg:"30 oz jar",pkgCost:4.99,cat:"Pantry & Spices"},
+         {item:"Romaine lettuce",qty:"1 leaf",use:.15,pkg:"Hearts 3-pack",pkgCost:2.99,cat:"Produce"}],
+   steps:["Bake or air-fry the chicken patty according to package instructions until crispy.","Toast the bun lightly.","Spread mayo on the bun, add lettuce, and place the hot patty inside."]},
+
+  {id:"l34",type:"Lunch",name:"Peanut Butter & Banana Wrap",budget:1,effort:1,prepTime:"3 min",tags:["Vegetarian","Vegan","American"],
+   desc:"Peanut butter spread on a tortilla, wrapped around a whole banana. Insanely fast, very filling.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Peanut butter",qty:"2 tbsp",use:.56,pkg:"16 oz jar",pkgCost:4.49,cat:"Pantry & Spices"},
+         {item:"Banana",qty:"1",use:.25,pkg:"Bunch (~5)",pkgCost:1.29,cat:"Produce"}],
+   steps:["Spread peanut butter all over one side of the tortilla.","Place the peeled banana near the edge.","Roll the tortilla tightly around the banana."]},
+
+  {id:"l35",type:"Lunch",name:"Adult Lunchable",budget:2,effort:1,prepTime:"4 min",tags:["American"],
+   desc:"A DIY charcuterie board on a plate. Deli meat, string cheese, crackers, and some fruit. Zero cooking.",
+   ings:[{item:"Deli turkey",qty:"2 oz",use:1.10,pkg:"9 oz pack",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"String cheese",qty:"1",use:.41,pkg:"12-count pack",pkgCost:4.99,cat:"Dairy & Eggs"},
+         {item:"Crackers",qty:"1 handful",use:.50,pkg:"1 box",pkgCost:3.49,cat:"Pantry & Spices"},
+         {item:"Grapes",qty:"1 handful",use:.65,pkg:"1 bunch",pkgCost:2.99,cat:"Produce"}],
+   steps:["Arrange crackers, folded turkey slices, string cheese, and washed grapes on a plate or in a container.","Eat."]},
 
   /* ══ DINNER ══ */
   {id:"d1",type:"Dinner",name:"Pasta with Jarred Sauce",budget:1,effort:1,prepTime:"15 min",tags:["Vegan","Vegetarian","Italian"],
@@ -467,5 +709,154 @@ export const MEALS =
          {item:"Butter",qty:"1 tbsp",use:.31,pkg:"1 lb (4 sticks)",pkgCost:4.99,cat:"Dairy & Eggs",owned:true},
          {item:"Black pepper",qty:"½ tsp",use:.03,pkg:"2 oz jar",pkgCost:2.49,cat:"Pantry & Spices",owned:true}],
    steps:["Cook ramen noodles only (skip seasoning packet). Reserve ¼ cup pasta water before draining.","Whisk eggs, parmesan, and lots of black pepper in a bowl.","While noodles are still hot but off heat, stir in butter until melted.","Pour egg mix over noodles and toss constantly, adding pasta water a little at a time, until creamy — not scrambled.","Serve immediately with extra parmesan."]},
+
+  {id:"d18",type:"Dinner",name:"Eating Out: Pizza or Burgers",budget:3,effort:1,prepTime:"0 min",tags:["American"],
+   desc:"Treat yourself to Little Caesars Slices-N-Stix or order a burger delivery. Perfect for busy nights editing videos.",
+   ings:[],
+   steps:["Open an app or drive to the pizza place.","Order dinner.","Relax and eat."]},
+
+  {id:"d19",type:"Dinner",name:"Crispy Chicken Bacon Ranch Wrap",budget:2,effort:2,prepTime:"15 min",tags:["American"],
+   desc:"Chicken, bacon, spinach, and ranch stuffed in a tortilla and griddled until the cheese melts and the outside is crispy.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Chicken breast",qty:"3 oz (cooked)",use:1.20,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Baby spinach",qty:"handful",use:.37,pkg:"5 oz bag",pkgCost:3.49,cat:"Produce"},
+         {item:"Bacon",qty:"2 slices (cooked)",use:.80,pkg:"16 oz pack",pkgCost:5.99,cat:"Meat & Fish"},
+         {item:"Ranch dressing",qty:"2 tbsp",use:.38,pkg:"16 oz bottle",pkgCost:3.49,cat:"Pantry & Spices"},
+         {item:"Shredded cheese",qty:"¼ cup",use:.50,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Mix the cooked chicken, spinach, chopped bacon, ranch, and cheese in a bowl.","Spread the filling down the center of the tortilla and fold the sides in tightly.","Griddle seam-side down in a hot pan for 2-3 mins until crispy, then flip and repeat."]},
+
+  {id:"d20",type:"Dinner",name:"Smoky Honey Chicken",budget:2,effort:3,prepTime:"30 min",tags:["American"],
+   desc:"Chicken simmered in salsa verde, honey, and spices. Make a batch and use it for tacos all week.",
+   ings:[{item:"Chicken breast",qty:"8 oz",use:3.20,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Salsa verde",qty:"½ cup",use:.99,pkg:"16 oz jar",pkgCost:3.99,cat:"Canned & Jarred"},
+         {item:"Honey",qty:"2 tbsp",use:1.00,pkg:"12 oz bottle",pkgCost:5.99,cat:"Pantry & Spices",owned:true},
+         {item:"Chili powder",qty:"1 tsp",use:.06,pkg:"2 oz jar",pkgCost:2.49,cat:"Pantry & Spices",owned:true}],
+   steps:["Whisk salsa verde, honey, and chili powder in a pot or slow cooker.","Nestle the chicken into the sauce and simmer until fully cooked (about 20 mins on the stove).","Shred the chicken with two forks directly in the sauce.","Serve over rice or in tortillas."]},
+
+  {id:"d21",type:"Dinner",name:"Korean-Style Beef and Rice",budget:2,effort:2,prepTime:"18 min",tags:["Asian"],
+   desc:"Ground beef browned and simmered in a fast soy, brown sugar, and garlic sauce over hot rice.",
+   ings:[{item:"Ground beef",qty:"6 oz",use:2.50,pkg:"1 lb pack",pkgCost:6.49,cat:"Meat & Fish"},
+         {item:"Garlic",qty:"1 clove",use:.04,pkg:"3-head bag",pkgCost:.99,cat:"Produce"},
+         {item:"Soy sauce",qty:"2 tbsp",use:.25,pkg:"10 oz bottle",pkgCost:2.49,cat:"Pantry & Spices",owned:true},
+         {item:"Brown sugar",qty:"1 tbsp",use:.15,pkg:"32 oz bag",pkgCost:2.99,cat:"Pantry & Spices",owned:true},
+         {item:"White rice",qty:"½ cup dry",use:.25,pkg:"5 lb bag",pkgCost:3.99,cat:"Grains & Bread"}],
+   steps:["Cook rice per package instructions.","Brown ground beef and minced garlic in a skillet until fully cooked. Drain excess grease.","Stir in soy sauce and brown sugar, and simmer for 5 minutes.","Serve the saucy beef over hot rice."]},
+
+  {id:"d22",type:"Dinner",name:"Creamy Garlic Alfredo Pasta",budget:2,effort:2,prepTime:"20 min",tags:["Vegetarian","Italian"],
+   desc:"A rich, homemade alfredo sauce made quickly with cream cheese, milk, and parmesan over noodles.",
+   ings:[{item:"Fettuccine pasta",qty:"4 oz",use:.50,pkg:"16 oz box",pkgCost:1.99,cat:"Grains & Bread"},
+         {item:"Butter",qty:"1 tbsp",use:.31,pkg:"1 lb (4 sticks)",pkgCost:4.99,cat:"Dairy & Eggs",owned:true},
+         {item:"Garlic",qty:"2 cloves",use:.07,pkg:"3-head bag",pkgCost:.99,cat:"Produce"},
+         {item:"Cream cheese",qty:"2 oz",use:.87,pkg:"8 oz block",pkgCost:3.49,cat:"Dairy & Eggs"},
+         {item:"Milk",qty:"½ cup",use:.19,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"},
+         {item:"Parmesan (grated)",qty:"½ cup",use:1.50,pkg:"5 oz tub",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Boil pasta according to package directions.","In a skillet, melt butter and cook minced garlic for 1 minute. Whisk in cream cheese until a smooth paste forms.","Slowly whisk in milk, then stir in parmesan until melted.","Toss the cooked pasta into the creamy sauce."]},
+
+  {id:"d23",type:"Dinner",name:"Crispy Enchilada Chicken Wraps",budget:2,effort:2,prepTime:"15 min",tags:["Mexican"],
+   desc:"Chicken, rice, beans, and enchilada sauce wrapped up and pan-fried crispy. Essentially a handheld enchilada.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Chicken breast",qty:"3 oz (cooked)",use:1.20,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"White rice",qty:"¼ cup (cooked)",use:.12,pkg:"5 lb bag",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Black beans (can)",qty:"¼ cup",use:.37,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Enchilada sauce",qty:"2 tbsp",use:.35,pkg:"10 oz can",pkgCost:1.99,cat:"Canned & Jarred"},
+         {item:"Shredded cheese",qty:"¼ cup",use:.50,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Mix cooked chicken, rice, beans, and enchilada sauce in a bowl.","Sprinkle cheese on the tortilla, add the filling, and fold the sides in tight.","Griddle seam-side down until crispy, then flip to toast the other side."]},
+
+  {id:"d24",type:"Dinner",name:"Creamy Tuna and Shells",budget:1,effort:2,prepTime:"18 min",tags:["American"],
+   desc:"A nostalgic, one-pot creamy pasta dish made with canned tuna and pasta shells. Easy and comforting.",
+   ings:[{item:"Pasta shells",qty:"3 oz",use:.38,pkg:"16 oz box",pkgCost:1.99,cat:"Grains & Bread"},
+         {item:"Chicken broth",qty:"1 cup",use:.44,pkg:"32 oz carton",pkgCost:2.49,cat:"Canned & Jarred"},
+         {item:"Milk",qty:"¼ cup",use:.09,pkg:"½ gallon",pkgCost:2.99,cat:"Dairy & Eggs"},
+         {item:"Canned tuna (5 oz)",qty:"1 can",use:1.20,pkg:"5 oz can",pkgCost:1.79,cat:"Canned & Jarred"},
+         {item:"Dijon mustard",qty:"1 tsp",use:.08,pkg:"12 oz jar",pkgCost:2.99,cat:"Pantry & Spices",owned:true}],
+   steps:["Simmer shells in broth and milk until al dente and liquid is mostly absorbed.","Stir in the drained tuna and dijon mustard.","Let rest for 5 minutes so the sauce thickens and gets creamy."]},
+
+  {id:"d25",type:"Dinner",name:"Mexican-Style Haystacks",budget:2,effort:2,prepTime:"20 min",tags:["Mexican"],
+   desc:"Ground beef simmered in a spiced tomato sauce with beans, served over a big pile of rice.",
+   ings:[{item:"Ground beef",qty:"6 oz",use:2.50,pkg:"1 lb pack",pkgCost:6.49,cat:"Meat & Fish"},
+         {item:"Tomato sauce (can)",qty:"½ can",use:.50,pkg:"8 oz can",pkgCost:.99,cat:"Canned & Jarred"},
+         {item:"Black beans (can)",qty:"½ cup",use:.75,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Taco seasoning",qty:"1 tbsp",use:.30,pkg:"1 oz packet",pkgCost:.99,cat:"Pantry & Spices"},
+         {item:"White rice",qty:"½ cup dry",use:.25,pkg:"5 lb bag",pkgCost:3.99,cat:"Grains & Bread"}],
+   steps:["Cook rice per package.","Brown beef in a skillet and drain excess grease.","Stir in taco seasoning, tomato sauce, and beans. Simmer 5 mins to thicken.","Serve the meat and bean sauce over hot rice."]},
+
+  {id:"d26",type:"Dinner",name:"Pasta al Forno",budget:2,effort:3,prepTime:"30 min",tags:["Vegetarian","Italian"],
+   desc:"A simple baked pasta dish with penne, diced tomatoes, and loads of melted mozzarella.",
+   ings:[{item:"Penne pasta",qty:"4 oz",use:.50,pkg:"16 oz box",pkgCost:1.99,cat:"Grains & Bread"},
+         {item:"Diced tomatoes (can)",qty:"½ can",use:.75,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Shredded mozzarella",qty:"½ cup",use:.75,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Parmesan (grated)",qty:"2 tbsp",use:.60,pkg:"5 oz tub",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Preheat oven to 400°F and boil pasta until al dente.","Simmer diced tomatoes with salt, pepper, and garlic powder for 10 minutes.","Toss pasta with sauce. Place in a baking dish and top heavily with both cheeses.","Bake 15 minutes until bubbly."]},
+
+  {id:"d27",type:"Dinner",name:"Skillet Honey Garlic Chicken",budget:2,effort:2,prepTime:"20 min",tags:["Asian"],
+   desc:"Cubed chicken breast seared and coated in a sticky, sweet garlic-soy glaze. Perfect over rice.",
+   ings:[{item:"Chicken breast",qty:"6 oz",use:2.40,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Soy sauce",qty:"1 tbsp",use:.12,pkg:"10 oz bottle",pkgCost:2.49,cat:"Pantry & Spices",owned:true},
+         {item:"Honey",qty:"1 tbsp",use:.50,pkg:"12 oz bottle",pkgCost:5.99,cat:"Pantry & Spices",owned:true},
+         {item:"Garlic",qty:"2 cloves",use:.07,pkg:"3-head bag",pkgCost:.99,cat:"Produce"},
+         {item:"White rice",qty:"½ cup dry",use:.25,pkg:"5 lb bag",pkgCost:3.99,cat:"Grains & Bread"}],
+   steps:["Cook rice. Cut chicken into bite-sized cubes.","Whisk soy sauce, honey, and minced garlic with a splash of water.","Sear chicken in an oiled skillet until golden brown.","Pour sauce in and simmer for 2-3 mins until thick and sticky. Serve over rice."]},
+
+  {id:"d28",type:"Dinner",name:"Orange Chicken with Broccoli",budget:2,effort:2,prepTime:"22 min",tags:["Asian"],
+   desc:"Stir-fried chicken and steamed broccoli tossed in a quick orange sauce. Way better and faster than takeout.",
+   ings:[{item:"Chicken breast",qty:"6 oz",use:2.40,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Orange sauce (bottle)",qty:"¼ cup",use:.85,pkg:"12 oz bottle",pkgCost:3.99,cat:"Pantry & Spices"},
+         {item:"Broccoli florets",qty:"1 cup",use:.75,pkg:"12 oz bag",pkgCost:2.99,cat:"Produce"},
+         {item:"White rice",qty:"½ cup dry",use:.25,pkg:"5 lb bag",pkgCost:3.99,cat:"Grains & Bread"}],
+   steps:["Cook rice. Slice chicken into thin strips.","Stir-fry chicken in a hot skillet until cooked through. Set aside.","Add broccoli and a splash of water, cover, and steam for 2 mins.","Return chicken to the pan, add orange sauce, and toss until hot."]},
+
+  {id:"d29",type:"Dinner",name:"Sloppy Joes",budget:2,effort:2,prepTime:"15 min",tags:["American"],
+   desc:"Ground beef cooked in a tangy tomato-BBQ sauce, served messy on a soft hamburger bun.",
+   ings:[{item:"Ground beef",qty:"6 oz",use:2.50,pkg:"1 lb pack",pkgCost:6.49,cat:"Meat & Fish"},
+         {item:"Sloppy Joe mix (can)",qty:"½ can",use:.75,pkg:"15 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Hamburger buns",qty:"1",use:.37,pkg:"8-count pack",pkgCost:2.99,cat:"Grains & Bread"}],
+   steps:["Brown ground beef in a skillet and drain the grease.","Pour in the sloppy joe mix and simmer for 5 minutes.","Spoon generously onto a bun."]},
+
+  {id:"d30",type:"Dinner",name:"Beef Stroganoff",budget:2,effort:2,prepTime:"20 min",tags:["American"],
+   desc:"A fast, hearty stroganoff made with ground beef, mushroom soup, and sour cream over egg noodles.",
+   ings:[{item:"Ground beef",qty:"6 oz",use:2.50,pkg:"1 lb pack",pkgCost:6.49,cat:"Meat & Fish"},
+         {item:"Cream of mushroom soup",qty:"½ can",use:.75,pkg:"10.5 oz can",pkgCost:1.49,cat:"Canned & Jarred"},
+         {item:"Sour cream",qty:"2 tbsp",use:.31,pkg:"16 oz tub",pkgCost:2.49,cat:"Dairy & Eggs"},
+         {item:"Egg noodles",qty:"1 cup",use:.50,pkg:"16 oz bag",pkgCost:2.49,cat:"Grains & Bread"}],
+   steps:["Boil egg noodles according to package directions.","Brown the ground beef and drain the grease.","Stir in the cream of mushroom soup and sour cream. Heat until warm (don't boil).","Serve the sauce over the drained egg noodles."]},
+
+  {id:"d31",type:"Dinner",name:"Taco Chicken Quesadillas",budget:2,effort:2,prepTime:"15 min",tags:["Mexican"],
+   desc:"A massive flour tortilla loaded with taco-seasoned chicken and heaps of melted cheese, crisped to perfection.",
+   ings:[{item:"Flour tortilla (large)",qty:"1",use:.40,pkg:"10-count pack",pkgCost:3.99,cat:"Grains & Bread"},
+         {item:"Chicken breast",qty:"4 oz",use:1.60,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Taco seasoning",qty:"1 tbsp",use:.30,pkg:"1 oz packet",pkgCost:.99,cat:"Pantry & Spices"},
+         {item:"Shredded cheese",qty:"½ cup",use:.50,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Chop chicken and cook in a skillet with taco seasoning and a splash of water until done.","Place tortilla in a dry pan, sprinkle cheese, add chicken to half, and fold over.","Cook 2-3 minutes per side until golden and the cheese melts completely."]},
+
+  {id:"d32",type:"Dinner",name:"Fettuccine Alfredo with Chicken",budget:2,effort:2,prepTime:"15 min",tags:["Italian"],
+   desc:"Pasta tossed in jarred alfredo sauce and topped with pan-seared chicken. Quick, creamy dinner.",
+   ings:[{item:"Fettuccine pasta",qty:"4 oz",use:.50,pkg:"16 oz box",pkgCost:1.99,cat:"Grains & Bread"},
+         {item:"Alfredo sauce (jar)",qty:"½ cup",use:1.10,pkg:"15 oz jar",pkgCost:3.49,cat:"Canned & Jarred"},
+         {item:"Chicken breast",qty:"4 oz",use:1.60,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"}],
+   steps:["Boil fettuccine until al dente.","While pasta cooks, season chicken with salt and pepper, and pan-sear until cooked through. Slice.","Drain pasta, toss with alfredo sauce in the warm pot, and top with chicken."]},
+
+  {id:"d33",type:"Dinner",name:"Sheet Pan Sausage & Veggies",budget:2,effort:3,prepTime:"30 min",tags:["American"],
+   desc:"Chop everything up, toss it on a pan, and let the oven do the work. Great way to clean out the fridge.",
+   ings:[{item:"Italian sausage links",qty:"2",use:1.58,pkg:"19 oz pack",pkgCost:4.99,cat:"Meat & Fish"},
+         {item:"Bell pepper",qty:"1",use:1.29,pkg:"Each",pkgCost:1.29,cat:"Produce"},
+         {item:"Onion",qty:"½",use:.40,pkg:"Each",pkgCost:.79,cat:"Produce"},
+         {item:"Olive oil",qty:"1 tbsp",use:.08,pkg:"33.8 oz bottle",pkgCost:7.99,cat:"Pantry & Spices",owned:true}],
+   steps:["Preheat oven to 400°F.","Slice sausages, peppers, and onions into chunks.","Toss everything on a baking sheet with olive oil, salt, and pepper.","Bake for 20-25 minutes until veggies are tender and sausage is browned."]},
+
+  {id:"d34",type:"Dinner",name:"English Muffin Pizzas",budget:1,effort:2,prepTime:"12 min",tags:["American","Italian"],
+   desc:"The nostalgic after-school snack, upgraded to dinner. Toasted English muffins loaded with sauce and cheese.",
+   ings:[{item:"English muffins",qty:"2",use:1.00,pkg:"6-count pack",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"Marinara sauce (jar)",qty:"¼ cup",use:.25,pkg:"24 oz jar",pkgCost:3.49,cat:"Canned & Jarred"},
+         {item:"Shredded mozzarella",qty:"½ cup",use:.75,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"},
+         {item:"Pepperoni",qty:"8 slices",use:.60,pkg:"5 oz bag",pkgCost:3.99,cat:"Meat & Fish"}],
+   steps:["Preheat oven to 400°F (or use a toaster oven).","Split English muffins and spread a spoonful of marinara on each half.","Top generously with cheese and pepperoni.","Bake 8-10 minutes until cheese is melted and slightly browned."]},
+
+  {id:"d35",type:"Dinner",name:"BBQ Chicken Pita Pizza",budget:2,effort:2,prepTime:"12 min",tags:["American"],
+   desc:"A personal pizza made on a pita crust, using BBQ sauce instead of marinara and topped with chicken.",
+   ings:[{item:"Pita bread",qty:"1 round",use:.50,pkg:"6-count pack",pkgCost:2.99,cat:"Grains & Bread"},
+         {item:"BBQ sauce",qty:"2 tbsp",use:.20,pkg:"18 oz bottle",pkgCost:2.99,cat:"Pantry & Spices"},
+         {item:"Chicken breast",qty:"3 oz (cooked)",use:1.20,pkg:"2 lb pack",pkgCost:7.99,cat:"Meat & Fish"},
+         {item:"Shredded cheese",qty:"⅓ cup",use:.60,pkg:"8 oz bag",pkgCost:3.99,cat:"Dairy & Eggs"}],
+   steps:["Preheat oven to 400°F.","Spread BBQ sauce evenly over the pita bread.","Top with chopped cooked chicken and a handful of cheese.","Bake for 8-10 minutes until the edges of the pita are crispy and the cheese is melted."]}
 
 ];
