@@ -44,8 +44,8 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .rec-row.sel{background:#F0FDF4;}
 
 /* ── MOBILE ── */
-.m-header{position:fixed;top:0;left:0;right:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;border-bottom:1px solid #252D3E;transition:top .26s cubic-bezier(.4,0,.2,1);}
-.m-bottom-nav{position:fixed;bottom:0;left:0;right:0;height:68px;background:#1A1F2E;display:flex;align-items:center;border-top:1px solid #252D3E;z-index:100;padding-bottom:env(safe-area-inset-bottom,0);}
+.m-header{flex-shrink:0;height:56px;background:#1A1F2E;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid #252D3E;transition:margin-top .26s cubic-bezier(.4,0,.2,1);}
+.m-bottom-nav{flex-shrink:0;height:68px;background:#1A1F2E;display:flex;align-items:center;border-top:1px solid #252D3E;padding-bottom:env(safe-area-inset-bottom,0);}
 .m-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:transparent;color:rgba(255,255,255,.4);font-family:'Nunito Sans',sans-serif;cursor:pointer;padding:6px 0;transition:color .12s,background .12s;-webkit-tap-highlight-color:transparent;border-radius:8px;}
 .m-tab.active{color:#059669;background:rgba(255,255,255,.06);}
 .m-tab-icon{font-size:20px;line-height:1;}
@@ -57,7 +57,7 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .m-tab-plan-emoji{font-size:28px;line-height:1;filter:brightness(0) invert(1);}
 .m-tab-plan-label{font-size:9.5px;font-weight:700;letter-spacing:.04em;font-family:'Nunito Sans',sans-serif;color:rgba(255,255,255,.45);line-height:1;margin-top:1px;}
 .m-tab-plan-label.active{color:#059669;}
-.m-content{position:fixed;top:56px;bottom:68px;left:0;right:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#F0F2F5;transition:top .26s cubic-bezier(.4,0,.2,1);}
+.m-content{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#F0F2F5;}
 .m-page{padding:16px 14px 20px;min-height:100%;}
 .m-day-strip{background:#1A1F2E;padding:10px 16px 12px;position:sticky;top:0;z-index:10;}
 .m-day-strip-sub{overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease;}
@@ -72,7 +72,7 @@ input:focus,select:focus,textarea:focus{outline:none;}
 .slide-overlay.open{opacity:1;pointer-events:all;}
 .m-day-arrow{width:34px;height:34px;border:1.5px solid rgba(255,255,255,.22);background:transparent;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;transition:background .12s;flex-shrink:0;}
 .m-day-arrow:active{background:rgba(255,255,255,.15);}
-.m-swap-banner{position:fixed;bottom:76px;left:12px;right:12px;background:#1A1F2E;border:1.5px solid rgba(234,179,8,.4);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:90;box-shadow:0 4px 20px rgba(0,0,0,.25);}
+.m-swap-banner{position:absolute;bottom:80px;left:12px;right:12px;background:#1A1F2E;border:1.5px solid rgba(234,179,8,.4);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:90;box-shadow:0 4px 20px rgba(0,0,0,.25);}
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 .slide-left{animation:slideInLeft .2s ease both}
@@ -1578,10 +1578,10 @@ export default function App({ session }) {
   // ── MOBILE LAYOUT ──────────────────────────────────────────
   if (isMobile) {
     return (
-      <div style={{fontFamily:"'Nunito Sans',sans-serif",background:"#F0F2F5",height:"100dvh",overflow:"hidden"}}>
+      <div style={{fontFamily:"'Nunito Sans',sans-serif",display:"flex",flexDirection:"column",height:"100dvh",overflow:"hidden",background:"#F0F2F5",position:"relative"}}>
 
         {/* Mobile Header */}
-        <header className="m-header" style={{top: (stripCollapsed && view==="plan") ? -56 : 0}}>
+        <header className="m-header" style={{marginTop: (stripCollapsed && view==="plan") ? -56 : 0}}>
           <div style={{display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:32,height:32,background:"#059669",borderRadius:7,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>🍽</div>
             {view==="plan" ? (
@@ -1614,7 +1614,6 @@ export default function App({ session }) {
 
         {/* Mobile Content */}
         <div className="m-content" ref={mContentRef}
-          style={{top: (stripCollapsed && view==="plan") ? 0 : 56}}
           onTouchStart={view==="plan"?onTouchStart:undefined}
           onTouchEnd={view==="plan"?onTouchEnd:undefined}>
 
